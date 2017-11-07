@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.count_value{
+			opacity: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="counters">
+		<span class="count_value">5</span>
+		<p class="stat_count"><span class="count"></span> лет</p>
+	</div>
+	<div class="counters">
+		<span class="count_value">150</span>
+		<p class="stat_count"><span class="count"></span> лет</p>
+	</div>
+</div>
+<div class="counters">
+	<span class="count_value">70</span>
+	<p class="stat_count"><span class="count"></span> лет</p>
+</div>
+</div>
+<div class="counters">
+	<span class="count_value">50</span>
+	<p class="stat_count"><span class="count"></span> лет</p>
+</div>
+</div>
+<script
+src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+crossorigin="anonymous"></script>
+<script>
+
+//-----------------------------------------------------
+//counters ////on scroll\\\\ loop in setInterval
+//-----------------------------------------------------
+var timer = 2000;
+var start_counter = true;
+// $(window).scroll(function () {
+	// console.log($(window).scrollTop());
+	// if($(window).scrollTop() > 1300 && start_counter == true){
+		$('.count').each(function(){
+			var count = $(this);
+			var count_value = +count.parent().siblings('.count_value').text();
+			var count_interval = timer / count_value; //get time for setInterval
+			var i = 1;
+
+			var interval = setInterval(function(){
+				count.text(i);
+				if(i === count_value || i > count_value) {
+					if(i > count_value){
+						count.text(count_value);
+					}
+					clearInterval(interval);
+					return false;
+				} 
+				i++;
+			}, count_interval);
+			// start_counter = false;
+		});
+
+</script>
+</body>
+</html>
